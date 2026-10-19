@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Elytra Combat — Premium Elytra + Mace PvP Mod</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700&family=Inter:wght@500;700;800;900&display=swap');
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:#070a10;color:#e6eef7;font-family:Inter,sans-serif;overflow-x:hidden}
+  .glow{position:fixed;inset:0;pointer-events:none;background:radial-gradient(800px 500px at 50% 0%, rgba(0,217,255,0.14), transparent 70%), radial-gradient(600px 400px at 90% 60%, rgba(255,215,0,0.07), transparent 60%)}
+  header{max-width:1100px;margin:0 auto;padding:28px 24px;display:flex;justify-content:space-between;align-items:center;position:relative;z-index:1}
+  .logo{display:flex;align-items:center;gap:12px}
+  .logo-badge{width:44px;height:44px;background:linear-gradient(135deg,#00D9FF,#00FF88);border-radius:12px;display:grid;place-items:center;font-size:22px;box-shadow:0 4px 24px rgba(0,217,255,0.35)}
+  .logo h1{font-size:20px;font-weight:900;letter-spacing:0.02em}
+  .logo span{color:#00D9FF}
+  .badge{font-family:JetBrains Mono,monospace;font-size:11px;letter-spacing:0.12em;padding:6px 10px;border-radius:999px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1)}
+  .hero{max-width:1100px;margin:0 auto;padding:24px 24px 40px;display:grid;grid-template-columns:1.1fr 0.9fr;gap:28px;position:relative;z-index:1}
+  @media(max-width:900px){.hero{grid-template-columns:1fr}}
+  .hero-left h2{font-size:44px;line-height:0.95;font-weight:900;letter-spacing:-0.03em;margin:12px 0}
+  .hero-left h2 em{font-style:normal;background:linear-gradient(90deg,#00D9FF,#00FF88);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+  .hero-left p{color:#9aa8bd;line-height:1.6;margin-top:12px;max-width:560px}
+  .cta{margin-top:20px;display:flex;gap:12px;flex-wrap:wrap}
+  .btn{padding:12px 18px;border-radius:10px;font-weight:800;font-size:14px;text-decoration:none;display:inline-flex;align-items:center;gap:8px;border:none;cursor:pointer}
+  .btn-primary{background:linear-gradient(135deg,#00D9FF,#0ea5e9);color:#001018;box-shadow:0 8px 24px rgba(0,217,255,0.35)}
+  .btn-ghost{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);color:#e6eef7}
+  .hero-card{background:linear-gradient(180deg, #121821, #0f1419);border:1px solid rgba(255,255,255,0.08);border-radius:16px;overflow:hidden;box-shadow:0 16px 48px rgba(0,0,0,0.5)}
+  .card-top{height:3px;background:linear-gradient(90deg,#00D9FF,#FFD700,#FF5544)}
+  .card-inner{padding:18px}
+  .hud{font-family:JetBrains Mono,monospace;background:#0a0f15;border:1px solid rgba(0,217,255,0.18);border-radius:12px;padding:14px;margin-top:14px}
+  .hud-title{color:#00D9FF;font-weight:800;letter-spacing:0.08em;font-size:12px;border-bottom:1px solid rgba(255,255,255,0.08);padding-bottom:8px;margin-bottom:10px}
+  .hud-row{display:flex;justify-content:space-between;padding:6px 0;font-size:13px}
+  .hud-row span:last-child{font-weight:700}
+  .ok{color:#00FF88}.warn{color:#00D9FF}.off{color:#6b7280}
+  .gui-preview{margin-top:16px;background:#0e141c;border-radius:12px;border:1px solid rgba(255,255,255,0.06);padding:16px}
+  .gui-title{text-align:center;color:#00D9FF;font-weight:900;letter-spacing:0.08em;font-size:12px}
+  .gui-btn{display:block;width:100%;margin:8px 0;padding:12px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.08);border-radius:10px;color:#e6eef7;font-weight:800;text-align:center}
+  .gui-btn.accent{border-color:rgba(0,217,255,0.4);background:linear-gradient(135deg, rgba(0,217,255,0.12), rgba(0,255,136,0.08))}
+  .features{max-width:1100px;margin:0 auto;padding:8px 24px 40px;display:grid;grid-template-columns:repeat(3,1fr);gap:16px;position:relative;z-index:1}
+  @media(max-width:900px){.features{grid-template-columns:1fr}}
+  .f{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.06);border-radius:14px;padding:18px}
+  .f h3{font-size:15px;margin:8px 0 6px}
+  .f p{color:#9aa8bd;font-size:13px;line-height:1.6}
+  .f .icon{width:36px;height:36px;border-radius:10px;display:grid;place-items:center;font-size:18px}
+  .flow{max-width:1100px;margin:0 auto;padding:0 24px 40px;position:relative;z-index:1}
+  .flow h3{text-align:center;font-size:18px;letter-spacing:0.08em;color:#00D9FF;margin-bottom:18px}
+  .steps{display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap}
+  .step{background:#121821;border:1px solid rgba(255,255,255,0.06);border-radius:10px;padding:10px 14px;font-family:JetBrains Mono,monospace;font-size:12px;font-weight:700}
+  .arrow{color:#00D9FF;font-weight:900}
+  .spec{max-width:1100px;margin:0 auto;padding:0 24px 40px;position:relative;z-index:1;display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  @media(max-width:900px){.spec{grid-template-columns:1fr}}
+  .code{background:#0a0f15;border:1px solid rgba(255,255,255,0.06);border-radius:12px;padding:16px;font-family:JetBrains Mono,monospace;font-size:12px;line-height:1.7;color:#cbd5e1;overflow:auto}
+  .code b{color:#00D9FF}
+  footer{max-width:1100px;margin:0 auto;padding:24px;text-align:center;color:#5b6b86;font-size:12px;position:relative;z-index:1;border-top:1px solid rgba(255,255,255,0.06)}
+</style>
+</head>
+<body>
+<div class="glow"></div>
+<header>
+  <div class="logo">
+    <div class="logo-badge">⚡</div>
+    <div><h1>ELYTRA <span>COMBAT</span></h1><div style="font-family:JetBrains Mono,monospace;font-size:11px;letter-spacing:0.1em;color:#7a8aa0">FABRIC 1.21.x • CLIENT-SIDE</div></div>
+  </div>
+  <div class="badge">v1.0.0 • MIT • PREMIUM PvP</div>
+</header>
+
+<section class="hero">
+  <div class="hero-left">
+    <div class="badge" style="display:inline-block;margin-bottom:10px">🎯 Fast • Safe • Smooth • Lightweight</div>
+    <h2>Premium<br><em>Elytra + Mace</em><br>PvP Mod</h2>
+    <p>Instant <b>Chestplate ↔ Elytra</b> toggle, smart <b>Mace</b> selection, and <b>Rocket</b> management — all with configurable keybinds, modern GUI, and zero inventory risk. Built for competitive play.</p>
+    <div class="cta">
+      <a class="btn btn-primary" href="#">⬇ Download JAR</a>
+      <a class="btn btn-ghost" href="#">📖 How it Works</a>
+      <a class="btn btn-ghost" href="#">⚙ Config</a>
+    </div>
+    <div style="margin-top:18px;display:flex;gap:8px;flex-wrap:wrap">
+      <span class="badge">G Elytra Toggle</span>
+      <span class="badge">R Mace Select</span>
+      <span class="badge">V Rockets</span>
+      <span class="badge">K Menu</span>
+      <span class="badge">H Combat Mode</span>
+    </div>
+  </div>
+
+  <div class="hero-card">
+    <div class="card-top"></div>
+    <div class="card-inner">
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <div style="font-weight:900;letter-spacing:0.06em;color:#00D9FF">⚡ ELYTRA COMBAT</div>
+        <div style="font-size:11px;color:#6b7280;font-family:JetBrains Mono,monospace">HUD LIVE</div>
+      </div>
+      <div class="hud">
+        <div class="hud-title">⚡ ELYTRA COMBAT</div>
+        <div class="hud-row"><span>🪽 Elytra:</span><span class="ok">EQUIPPED</span></div>
+        <div class="hud-row"><span>⚔ Mace:</span><span class="warn">READY</span></div>
+        <div class="hud-row"><span>🚀 Rockets:</span><span class="ok">32</span></div>
+        <div class="hud-row"><span>🛡 Chestplate:</span><span class="warn">SAVED</span></div>
+        <div class="hud-row"><span>⚡ Combat:</span><span class="ok">ON</span></div>
+      </div>
+      <div class="gui-preview">
+        <div class="gui-title">⚡ ELYTRA COMBAT ⚡</div>
+        <div style="height:1px;background:rgba(255,255,255,0.08);margin:10px 0"></div>
+        <div class="gui-btn accent">🪽 ELYTRA MODE — Equip / Restore</div>
+        <div class="gui-btn">⚔ MACE — Select Mace</div>
+        <div class="gui-btn">🚀 ROCKETS — Select Rockets</div>
+        <div class="gui-btn">⚙ SETTINGS — Configure Mod</div>
+        <div style="display:flex;gap:8px;margin-top:6px">
+          <div style="flex:1;background:rgba(0,217,255,0.1);border:1px solid rgba(0,217,255,0.2);border-radius:8px;padding:8px;text-align:center;font-size:12px;font-weight:800;color:#00D9FF">👁 HUD: ON</div>
+          <div style="flex:1;background:rgba(0,255,136,0.1);border:1px solid rgba(0,255,136,0.2);border-radius:8px;padding:8px;text-align:center;font-size:12px;font-weight:800;color:#00FF88">⚡ Combat: ON</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="features">
+  <div class="f"><div class="icon" style="background:rgba(0,217,255,0.15);border:1px solid rgba(0,217,255,0.3)">🪽</div><h3>Elytra Quick-Swap</h3><p>One key <b>G</b> equips Elytra and saves your Chestplate with full NBT. Press again to restore. Instant, with inventory-full protection.</p></div>
+  <div class="f"><div class="icon" style="background:rgba(255,215,0,0.15);border:1px solid rgba(255,215,0,0.3)">⚔</div><h3>Smart Mace Select</h3><p>Finds best Mace by hotbar → durability → enchants. Auto-moves to Slot 2 and selects it. Attack instantly — no inventory juggling.</p></div>
+  <div class="f"><div class="icon" style="background:rgba(255,85,68,0.15);border:1px solid rgba(255,85,68,0.3)">🚀</div><h3>Rocket Ready</h3><p>Detects rockets anywhere, optionally centers them to Slot 3. Count shown in HUD. Never rearranges your inventory unnecessarily.</p></div>
+  <div class="f"><div class="icon" style="background:rgba(0,255,136,0.12);border:1px solid rgba(0,255,136,0.25)">⚡</div><h3>Combat Mode</h3><p>Toggle <b>H</b> for ultra-fast flow: Chestplate → Elytra → Fly → Mace. Minimal clicks, maximum impact. Built for 1.21 mace PvP.</p></div>
+  <div class="f"><div class="icon" style="background:rgba(168,85,247,0.12);border:1px solid rgba(168,85,247,0.25)">🛡</div><h3>Inventory Safety</h3><p>Server-validated <code>SWAP</code>/<code>PICKUP</code> clicks, deep <code>copy()</code> of DataComponents, destination checks, and graceful cancel — never lose items.</p></div>
+  <div class="f"><div class="icon" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1)">⚙</div><h3>Fully Configurable</h3><p>Every key, slot, HUD position, sound, particle, and message. Edit in-game <b>K → Settings</b> or <code>config/elytra-combat.json</code>.</p></div>
+</section>
+
+<section class="flow">
+  <h3>COMBAT FLOW</h3>
+  <div class="steps">
+    <div class="step">🛡 CHESTPLATE</div><span class="arrow">→</span>
+    <div class="step" style="border-color:#00D9FF;color:#00D9FF">[G] ELYTRA</div><span class="arrow">→</span>
+    <div class="step">🪽 FLY</div><span class="arrow">→</span>
+    <div class="step" style="border-color:#FF5544;color:#FF8844">[V] 🚀 32</div><span class="arrow">→</span>
+    <div class="step" style="border-color:#FFD700;color:#FFD700">[R] ⚔ MACE</div><span class="arrow">→</span>
+    <div class="step">💥 SMASH</div><span class="arrow">→</span>
+    <div class="step" style="border-color:#00FF88;color:#00FF88">[G] RESTORE</div>
+  </div>
+</section>
+
+<section class="spec">
+  <div class="code"><b>Keybinds → Options → Controls</b><br>
+Elytra Toggle → G<br>
+Mace Select → R<br>
+Rocket Select → V<br>
+Combat Mode → H<br>
+Open Menu → K<br><br>
+<b>Smart Mace Priority:</b><br>
+1. Already in hotbar<br>
+2. Highest durability remaining<br>
+3. Best enchantments (Breach/Density/Wind Burst)<br>
+4. Overall condition + unbreakable<br>
+  </div>
+  <div class="code"><b>config/elytra-combat.json</b><br>
+{<br>
+&nbsp;&nbsp;"elytra": { "enabled": true, "restoreChestplate": true },<br>
+&nbsp;&nbsp;"mace": { "preferredSlot": 1, "moveToHotbar": true },<br>
+&nbsp;&nbsp;"rockets": { "preferredSlot": 2, "autoMove": false },<br>
+&nbsp;&nbsp;"hud": { "enabled": true, "x": 10, "y": 10, "scale": 1.0 },<br>
+&nbsp;&nbsp;"effects": { "sounds": true, "particles": true },<br>
+&nbsp;&nbsp;"messages": {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;"elytraEquipped": "&b✈ Elytra Equipped",<br>
+&nbsp;&nbsp;&nbsp;&nbsp;"maceSelected": "&6⚔ Mace Selected"<br>
+&nbsp;&nbsp;}<br>
+}<br>
+  </div>
+</section>
+
+<footer>
+  Built with Fabric • Yarn 1.21.1+build.3 • Fabric API 0.107.0 • Java 21 • MIT License<br>
+  Elytra Combat is client-side only — server-validated clicks, zero background scanning, minimal FPS impact. 🪽⚔🚀
+</footer>
+</body>
+</html>

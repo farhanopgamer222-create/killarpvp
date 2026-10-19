@@ -1,0 +1,27 @@
+# Gradle
+.gradle/
+build/
+out/
+remappedSrc/
+
+# Run dirs
+run/
+logs/
+.fabric/
+
+# IDE
+.idea/
+*.iml
+*.ipr
+*.iws
+.vscode/
+.classpath
+.project
+.settings/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Config runtime
+config/elytra-combat.json
