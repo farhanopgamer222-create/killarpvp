@@ -1,0 +1,39 @@
+{
+  "schemaVersion": 1,
+  "id": "elytra-combat",
+  "version": "${version}",
+
+  "name": "Elytra Combat",
+  "description": "Premium Elytra + Mace PvP utility — instant Elytra/Chestplate swap, smart Mace & Rocket management, combat HUD and modern GUI.",
+  "authors": [
+    "ElytraCombat Team"
+  ],
+  "contact": {
+    "homepage": "https://github.com/example/elytra-combat",
+    "sources": "https://github.com/example/elytra-combat",
+    "issues": "https://github.com/example/elytra-combat/issues"
+  },
+
+  "license": "MIT",
+  "icon": "assets/elytra_combat/textures/gui/icon.png",
+
+  "environment": "client",
+  "entrypoints": {
+    "client": [
+      "com.example.elytracombat.ElytraCombatClient"
+    ]
+  },
+  "mixins": [
+    "elytra-combat.mixins.json"
+  ],
+
+  "depends": {
+    "fabricloader": ">=0.15.0",
+    "fabric-api": "*",
+    "minecraft": "1.21.x",
+    "java": ">=21"
+  },
+  "suggests": {
+    "cloth-config": "*"
+  }
+}

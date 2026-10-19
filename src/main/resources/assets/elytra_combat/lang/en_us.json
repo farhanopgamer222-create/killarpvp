@@ -1,0 +1,19 @@
+{
+  "key.elytra-combat.elytraToggle": "Elytra Toggle",
+  "key.elytra-combat.maceSelect": "Mace Select",
+  "key.elytra-combat.rocketSelect": "Rocket Select",
+  "key.elytra-combat.combatMode": "Toggle Combat Mode",
+  "key.elytra-combat.openMenu": "Open Elytra Combat Menu",
+  "category.elytra-combat.main": "Elytra Combat",
+  "text.elytra-combat.elytraEquipped": "✈ Elytra Equipped",
+  "text.elytra-combat.chestplateRestored": "🛡 Chestplate Restored",
+  "text.elytra-combat.maceSelected": "⚔ Mace Selected — Slot %s",
+  "text.elytra-combat.rocketsReady": "🚀 Rockets Ready — %s",
+  "text.elytra-combat.noMace": "§cNo Mace Found!",
+  "text.elytra-combat.noElytra": "§cNo Elytra Found!",
+  "text.elytra-combat.noRockets": "§cNo Rockets Found!",
+  "text.elytra-combat.inventoryFull": "§cInventory full — cannot swap safely!",
+  "text.elytra-combat.combatEnabled": "§a⚡ Combat Mode Enabled",
+  "text.elytra-combat.combatDisabled": "§7Combat Mode Disabled",
+  "text.elytra-combat.hudTitle": "⚡ ELYTRA COMBAT"
+}
